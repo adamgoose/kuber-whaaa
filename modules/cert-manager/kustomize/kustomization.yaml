@@ -1,0 +1,3 @@
+resources:
+  - aio.yaml
+  - cluster-issuer.yaml

@@ -1,0 +1,10 @@
+## Terraform
+.terraform*
+
+## Secrets
+.gitsecret/keys/random_seed
+!*.secret
+terraform.tfvars.json
+terraform.tfstate
+terraform.tfstate.backup
+kubeconfig.yaml
