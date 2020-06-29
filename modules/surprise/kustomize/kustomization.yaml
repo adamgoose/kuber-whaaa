@@ -1,0 +1,7 @@
+namespace: surprise
+commonLabels:
+  app: surprise
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml

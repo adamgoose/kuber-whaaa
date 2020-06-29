@@ -1,0 +1,17 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: surprise
+spec:
+  selector: {}
+  template:
+    spec:
+      containers:
+        - name: surprise
+          image: adamgoose/kuber-whaaa
+          resources: {}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP

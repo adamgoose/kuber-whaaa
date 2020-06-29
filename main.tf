@@ -6,7 +6,7 @@ module "cluster" {
 
   name               = "kuber-whaaa"
   region             = "nyc1"
-  kubernetes_version = "1.17.5-do.0"
+  kubernetes_version = "1.18.3-do.0"
   node_size          = "s-2vcpu-2gb" // $15/mo
   node_count         = 2             // $30/mo
 }
@@ -53,4 +53,8 @@ module "minio" {
 // Get the generated Minio credentials
 output "minio" {
   value = module.minio
+}
+
+module "surprise" {
+  source = "./modules/surprise"
 }
