@@ -1,4 +1,5 @@
 - [Kuber-Whaaa?](/)
+- [Step-by-Step](/step-by-step)
 - Modules
   - [cluster](modules/cluster)
   - [kube-state-metrics](modules/kube-state-metrics)
@@ -6,3 +7,4 @@
   - [cert-manager](modules/cert-manager)
   - [node-red](modules/node-red)
   - [minio](modules/minio)
+  - [surprise](modules/surprise)

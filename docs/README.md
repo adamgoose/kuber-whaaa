@@ -9,7 +9,19 @@ orchestration and operations control-plane. That's a bunch of fancy words to say
 application in Kubernetes using Terraform (infrastructure as code) from start to
 finish!
 
-## Modules
+This project is a simple demonstration of how you can go from zero to Kubernetes
+quickly using Infrastructure as Code (namely Terraform). By the time we're done,
+we'll have NodeRED and Minio running in a Kubernetes cluster with automatic DNS,
+free SSL, and endless possibilities!
+
+## Terraform
+
+[Terraform] is a tool for provisioning your cloud infrastructure as code. This
+allows you to version-control, parameterize, automate, and scale your
+infrastructure design. To work with this project, you'll need to install
+Terraform, as well as the [kustomize Terraform provider](https://github.com/kbst/terraform-provider-kustomize).
+
+## Included Modules
 
 The `main.tf` file contains the following modules. Collectively, they comprise a
 functional Kubernetes cluster on Digital Ocean.
@@ -24,3 +36,4 @@ functional Kubernetes cluster on Digital Ocean.
 [Springfield Devs]: https://www.meetup.com/sgfdevs
 [Dev Night]: https://www.meetup.com/sgfdevs/events/271320688/
 [Kubernetes]: https://kubernetes.io/
+[Terraform]: https://terraform.io/
