@@ -18,8 +18,8 @@ free SSL, and endless possibilities!
 
 [Terraform] is a tool for provisioning your cloud infrastructure as code. This
 allows you to version-control, parameterize, automate, and scale your
-infrastructure design. To work with this project, you'll need to install
-Terraform, as well as the [kustomize Terraform provider](https://github.com/kbst/terraform-provider-kustomize).
+infrastructure design. To work with this project, it's recommended you install
+[tfenv] with `brew install tfenv`.
 
 ## Included Modules
 
@@ -37,3 +37,4 @@ functional Kubernetes cluster on Digital Ocean.
 [Dev Night]: https://www.meetup.com/sgfdevs/events/271320688/
 [Kubernetes]: https://kubernetes.io/
 [Terraform]: https://terraform.io/
+[tfenv]: https://github.com/tfutils/tfenv

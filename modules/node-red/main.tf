@@ -7,9 +7,9 @@ resource "kubernetes_namespace" "main" {
 resource "helm_release" "node-red" {
   name       = "node-red"
   namespace  = kubernetes_namespace.main.metadata[0].name
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://k8s-at-home.com/charts/"
   chart      = "node-red"
-  version    = "1.4.2"
+  version    = "3.1.0"
 
   values = [yamlencode({
     timezone = "America/Chicago"

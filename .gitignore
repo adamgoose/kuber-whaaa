@@ -1,5 +1,6 @@
 ## Terraform
-.terraform*
+.terraform
+.terraform.*lock*
 
 ## Secrets
 .gitsecret/keys/random_seed

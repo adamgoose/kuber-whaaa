@@ -19,9 +19,9 @@ resource "random_password" "secretKey" {
 resource "helm_release" "minio" {
   name       = "minio"
   namespace  = kubernetes_namespace.minio.metadata[0].name
-  repository = "https://kubernetes-charts.storage.googleapis.com"
+  repository = "https://helm.min.io/"
   chart      = "minio"
-  version    = "5.0.29"
+  version    = "8.0.0"
 
   values = [yamlencode({
     accessKey = random_password.accessKey.result

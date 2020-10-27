@@ -38,6 +38,7 @@ resource "digitalocean_domain" "domain" {
 resource "digitalocean_record" "top" {
   domain = digitalocean_domain.domain.name
   type   = "A"
+  ttl    = 60
   name   = "@"
   value  = data.kubernetes_service.traefik.load_balancer_ingress.0.ip
 }
@@ -46,6 +47,7 @@ resource "digitalocean_record" "top" {
 resource "digitalocean_record" "wild" {
   domain = digitalocean_domain.domain.name
   type   = "CNAME"
+  ttl    = 60
   name   = "*"
   value  = "${digitalocean_domain.domain.name}."
 }

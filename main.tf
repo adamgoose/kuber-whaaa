@@ -6,7 +6,7 @@ module "cluster" {
 
   name               = "kuber-whaaa"
   region             = "nyc1"
-  kubernetes_version = "1.18.3-do.0"
+  kubernetes_version = "1.18.8-do.1"
   node_size          = "s-2vcpu-2gb" // $15/mo
   node_count         = 2             // $30/mo
 }
@@ -23,7 +23,7 @@ module "kube-state-metrics" {
 module "traefik" {
   source = "./modules/traefik"
 
-  domain = "do.enge.me"
+  domain = var.domain
 }
 
 // Cert Manager automatically detects Kubernetes Ingress resources, and in turn
@@ -40,14 +40,14 @@ module "cert-manager" {
 module "node-red" {
   source = "./modules/node-red"
 
-  hostname = "node-red.do.enge.me"
+  hostname = "node-red.${var.domain}"
 }
 
 // Minio is an S3-compliant Object Storage API.
 module "minio" {
   source = "./modules/minio"
 
-  hostname = "minio.do.enge.me"
+  hostname = "minio.${var.domain}"
 }
 
 // Get the generated Minio credentials
@@ -55,6 +55,6 @@ output "minio" {
   value = module.minio
 }
 
-module "surprise" {
-  source = "./modules/surprise"
-}
+# module "surprise" {
+#   source = "./modules/surprise"
+# }
