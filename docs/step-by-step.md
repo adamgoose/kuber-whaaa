@@ -2,24 +2,24 @@
 
 ## Step Zero: Get Ready
 
-You'll need to install [Terraform] and the [kustomize Terraform Provider][ktp].
-You'll also need a [Digitalocean] account. Click [here][Digitalocean] to get
-$100 free credit!
+You'll need to install [tfenv]. You'll also need a [Digitalocean] account. Click
+[here][Digitalocean] to get $100 free credit!
 
 ## Step One: Connect to Digitalocean
 
 Create a [Personal Access Token][pat] with write access, and place it in a
-`terraform.tfvars.json` file:
+`terraform.tfvars.json` file. Also choose a domain to serve your cluster at.
 
 ```json
 {
-  "do_token": "MY_PERSONAL_ACCESS_TOKEN_WITH_WRITE_ACCESS"
+  "do_token": "MY_PERSONAL_ACCESS_TOKEN_WITH_WRITE_ACCESS",
+  "domain": "my.domain.com"
 }
 ```
 
-> The `/variables.tf` file declares one input variable that is required to apply
-> this module: `do_token`. Instead of passing it to `terraform apply` every time,
-> we'll put it in this file.
+> The `/variables.tf` file declares two input variables that are required to
+> apply this module: `do_token` and `domain`. Instead of passing them to
+> `terraform apply` every time, we'll put them in this file.
 
 ## Step Two: Provision the Cluster
 
@@ -49,7 +49,7 @@ Once your cluster has been created, you'll be able to see it on your
 [Digitalocean Dashboard][clusters]. You'll also notice a new file has been
 created: `kubeconfig.yaml`. This file contains connection information and
 credentials for your newly created cluster. Keep it safe! Also, Digitialocean
-rotates the credentials, so you might have to run the above command in a month
+rotates the credentials, so you might have to run the above command in a week
 or so to update your `kubeconfig.yaml` file.
 
 ## Step Three: Install Some Modules
@@ -77,9 +77,16 @@ not handle ingress natively, however it provides API abstractions so that
 Ingress can be handled by the proxy of your choice. I like [Traefik], but there
 are several other options out there.
 
-Update the `domain` value in `/main.tf` to any domain that you control, and
-point its nameservers at `ns1.digitalocean.com.`, `ns2.digitalocean.com.`, and
-`ns3.digitalocean.com.`
+Point your domain's nameservers at `ns1.digitalocean.com.`,
+`ns2.digitalocean.com.`, and `ns3.digitalocean.com.`. For example, if your
+domain is `my.domain.com`, create the following entries in your domain's DNS
+zone:
+
+- `my.domain.com NS 60 ns1.digitalocean.com`
+- `my.domain.com NS 60 ns2.digitalocean.com`
+- `my.domain.com NS 60 ns3.digitalocean.com`
+
+Next, do the magic:
 
 ```bash
 terraform apply -target module.traefik
@@ -101,8 +108,8 @@ email address; this is required for LetsEncrypt.
 terraform apply -target module.cert-manager
 ```
 
-Again, due to the asynchronous nature of Cert-Manager, your command will likely
-fail at first. Don't panic. Wait a few minutes, and try again.
+Again, due to the asynchronous nature of Cert-Manager, your command might fail
+at first. Don't panic. Wait a few minutes, and try again.
 
 ## Step Four: Install Some More Modules
 
@@ -124,13 +131,6 @@ KUBECONFIG=./kubeconfig.yaml kubectl get certificate --all-namespaces --watch
 Once they're ready, head to `https://${node-red or minio hostname}` to see your
 apps running!
 
-Lastly, this website, which was referred to as a "surprise" when the original
-lecture was given, can be brought online:
-
-```bash
-terraform apply -target module.surprise
-```
-
 That's everything this project has to offer. For solidarity's sake,  you can run
 `terraform apply` without any arguments. Terraform will likely insist on
 checking the value of your LoadBalancer's IP and update the DNS record
@@ -148,6 +148,7 @@ terraform destroy
 
 Again, for reasons, you might have to run it a couple of times.
 
+[tfenv]: https://github.com/tfutils/tfenv
 [Terraform]: https://www.terraform.io/downloads.html
 [ktp]: https://github.com/kbst/terraform-provider-kustomize
 [Digitalocean]: https://m.do.co/c/6f278dc1a57d

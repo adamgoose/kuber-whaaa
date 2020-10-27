@@ -1,0 +1,9 @@
+#!/bin/bash
+
+TFC="terraform-docs markdown --hide providers"
+
+$TFC . > ./docs/modules/root.md;
+
+for module in $(basename ./modules/*); do
+  $TFC ./modules/$module > ./docs/modules/$module.md;
+done

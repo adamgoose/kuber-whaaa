@@ -1,12 +1,9 @@
 ## Requirements
 
-No requirements.
-
-## Providers
-
 | Name | Version |
 |------|---------|
-| helm | n/a |
+| terraform | ~> 0.13 |
+| helm | ~> 1.3 |
 
 ## Inputs
 

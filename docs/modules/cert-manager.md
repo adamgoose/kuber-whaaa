@@ -1,13 +1,10 @@
 ## Requirements
 
-No requirements.
-
-## Providers
-
 | Name | Version |
 |------|---------|
-| kubernetes | n/a |
-| kustomization | n/a |
+| terraform | ~> 0.13 |
+| kubernetes | ~> 1.13 |
+| kustomization | ~> 0.2 |
 
 ## Inputs
 

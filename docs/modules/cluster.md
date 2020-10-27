@@ -1,13 +1,10 @@
 ## Requirements
 
-No requirements.
-
-## Providers
-
 | Name | Version |
 |------|---------|
-| digitalocean | n/a |
-| local | n/a |
+| terraform | ~> 0.13 |
+| digitalocean | ~> 2.0 |
+| local | ~> 2.0 |
 
 ## Inputs
 
